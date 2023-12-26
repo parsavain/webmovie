@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebMovie</title>
+    <meta name="viewport" content="width=device-width">
+    <style>
+        body {
+            /* font-family: Arial, sans-serif; */
+            color: rgb(136, 15, 15);
+            background-color: rgb(13, 13, 13);
+            padding: 3%;
+            padding-bottom: 10%;
+        }
+
+        h1 {
+            padding-top: 1cm;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            box-shadow: 5px 5px 10px 1px rgba(136, 15, 15, 0.2);
+            border-radius: 25px;
+        }
+    </style>
+    <script>
+ function checkCredentials() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    // اینجا یوزرنیم و پسورد مورد نظر را وارد کنید
+    var correctUsername = "ilia";
+    var correctPassword = "8585";
+
+    if (username === correctUsername && password === correctPassword) {
+        var video = document.getElementById("video");
+        var newSource = document.getElementById("new-source").value;
+
+        video.pause(); // توقف پخش ویدیو
+        video.src = newSource; // تغییر مبدا ویدیو
+        video.load(); // بارگیری مجدد ویدیو
+        video.play(); // شروع پخش ویدیو
+
+        alert("ویدیو با موفقیت بارگیری شد!");
+    } else {
+        alert("نام کاربری یا رمزعبور اشتباه است!");
+    }
+}
+
+        function syncVideo() {
+            var video = document.getElementById("video");
+            var currentTime = video.currentTime;
+            alert("زمان فعلی ویدیو: " + currentTime + " ثانیه");
+        }
+    </script>
+</head>
+<body cz-shortcut-listen="true">
+    <h1 style="font-size: 2.5em; padding-top: 3%;">Web Movie<hr color="255, 0, 0"></h1>
+
+    <form>
+        <label for="username">username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="new-source">video src:</label>
+        <input type="text" id="new-source" name="new-source" required><br><br>
+
+        <input type="button" value="done" onclick="checkCredentials()">
+    </form>
+
+    <h1 style="padding-top: 3%;">Video:</h1>
+    <video controls id="video" name="media">
+        <source id="video-source" src="video_source.mp4" type="video/mp4">
+    </video>
+<br><br>
+    <button onclick="syncVideo()">Sync Video</button>
+</body>
+</html>
