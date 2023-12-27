@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function readSecJsonFile() {
+    fetch('webmovie.json')
+      .then(response => response.json())
+      .then(data => {
+        const sec = data.second;
+        console.log("second:", sec);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+
+//   readSecJsonFile()
+
+
+function writeSrcJsonFile(src) {
+    fetch('webmovie.json')
+      .then(response => response.json())
+      .then(data => {
+        data.src = src;
+        return fetch('webmovie.json', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+      })
+      .then(response => {
+        console.log('Src updated successfully');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+let mme = "https://dl13.freeserver.top/st01/film/1402/10/The.Puppetman.2023.720p.WEB-DL.SoftSub.DigiMoviez.mkv?md5=dkW_hwk3YpZXoNSa52srxQ&expires=1703975445";
+let mme2 = "https://dl13.freeserver.top/st01/film/1402/10/Rebel.Moon.Part.One.A.Child.of.Fire.2023.720p.WEB-DL.HardSub.DigiMoviez.mp4?md5=M6kyTQodwThHMulEV1Y8rA&expires=1703990052";
+writeSrcJsonFile(mme);
+    </script>
+</body>
+</html>
